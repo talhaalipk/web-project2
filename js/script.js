@@ -39,6 +39,7 @@ function runClock()
         }
         else{
             clearInterval(timer);
+            clockStarted = false;
             ballBox.removeEventListener('click',handleEvent);
             ballBox.innerHTML = `<h1 class="gameOver">Game Over</h1> <button class="restart-button">Restart game</button>`;
             ballBox.classList.add("centreCenter");
@@ -62,7 +63,15 @@ function increseScore()
     score.innerHTML = scoreValue; 
 }
 
+
+let clockStarted = false;
 function handleEvent(e){
+    // runClock();
+    if (!clockStarted) { 
+        runClock();
+        clockStarted = true; 
+    }
+
     console.log("Dfsdv");
     let value = Number(e.target.innerText);
     console.log(value);
@@ -84,9 +93,9 @@ function handleEvent(e){
 //Event lisener
 ballBox.addEventListener('click' , handleEvent)
 
-//calling functions 
+// calling functions 
 createNewBalls();
 creteNewTarget();
-runClock();
+// runClock();
 // increseScore();
 
